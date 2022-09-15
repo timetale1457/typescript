@@ -1,0 +1,43 @@
+개발환경 세팅
+
+1. npm install typescript
+2. npm install @types/node
+3. npm install ts-node --save-dev
+3. ts-node ${typescript 파일 경로}를 이용해 정상적동 확인
+4. tsc --init (tsconfig.json 생성)
+   tsconfig.json 기본값
+   {
+       "compilerOptions": {
+           "target": "es6",
+           "module": "commonjs",
+           "sourceMap": true,
+           "emitDecoratorMetadata": true,
+           "experimentalDecorators": true,
+           "removeComments": true,        
+           "noImplicitAny": false,
+           "outDir": "./dist"
+       }
+   }
+5. ctrl+shift+d -> TS Debug을 통해서 launch.json 생성
+   launch.json 기본값
+   {
+       "version": "0.2.0",
+       "configurations": [
+           {
+               "name": "ts-node",
+               "type": "node",
+               "request": "launch",
+               "args": [
+                   "${relativeFile}"
+               ],
+               "runtimeArgs": [
+                   "-r",
+                   "ts-node/register"
+               ],
+               "cwd": "${workspaceRoot}",
+               "internalConsoleOptions": "openOnSessionStart",
+               "program": "${workspaceFolder}/src/app.ts",
+               "preLaunchTask": "tsc: build - tsconfig.json",
+           }
+       ]
+   }
